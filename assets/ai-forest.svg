@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-label="Stylized synthetic forest illustration">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a7dc9"/>
+      <stop offset="100%" stop-color="#94f5d7"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#f8fff2"/>
+      <stop offset="100%" stop-color="#d9f8ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#sky)"/>
+  <circle cx="300" cy="170" r="150" fill="url(#sun)"/>
+  <path d="M0 510 C170 470, 300 550, 470 500 C650 450, 790 550, 1010 500 C1080 485, 1130 510, 1200 485 L1200 750 L0 750 Z" fill="#1f624a"/>
+  <path d="M90 620 L170 360 L250 620 Z" fill="#57d0aa"/>
+  <path d="M220 620 L305 290 L390 620 Z" fill="#34b286"/>
+  <path d="M360 620 L445 340 L530 620 Z" fill="#66e0ba"/>
+  <path d="M520 620 L610 280 L700 620 Z" fill="#2fa67d"/>
+  <path d="M700 620 L780 345 L860 620 Z" fill="#72ebc6"/>
+  <path d="M855 620 L940 260 L1025 620 Z" fill="#45bf96"/>
+  <path d="M995 620 L1070 330 L1145 620 Z" fill="#66ddba"/>
+  <text x="56" y="98" fill="#eefeff" font-family="Arial, sans-serif" font-size="40" letter-spacing="2">SYNTHETIC FOREST</text>
+</svg>

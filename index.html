@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truth Lens | AI Misinformation Awareness</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">Digital Media Literacy</p>
+      <h1>Spot the Fake. Stop the Spread.</h1>
+      <p class="hero__lead">
+        Truth Lens is a starter awareness site about AI misinformation. Learn the warning signs,
+        test your instincts, and think twice before sharing suspicious content.
+      </p>
+      <a href="#game" class="btn btn--primary">Play the Guessing Game</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>Why this matters</h2>
+      <div class="info-grid">
+        <article class="info-card">
+          <h3>AI media is getting convincing</h3>
+          <p>Fabricated images and videos can imitate real events and people in seconds.</p>
+        </article>
+        <article class="info-card">
+          <h3>False content spreads fast</h3>
+          <p>Emotional and shocking posts travel quickly, especially when facts are not checked.</p>
+        </article>
+        <article class="info-card">
+          <h3>Verification is a skill</h3>
+          <p>Cross-checking sources, dates, and media context helps reduce harm from misinformation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--game" id="game">
+      <div class="game-header">
+        <h2>Game: Which one is AI-generated?</h2>
+        <p>Pick the option you think is AI-generated. Image rounds use Artlist AI renders paired against matching real-world photos.</p>
+        <p id="mediaStats" class="game-meta"></p>
+      </div>
+
+      <div class="game-status">
+        <p id="roundIndicator">Round 1 of 12</p>
+        <p id="scoreIndicator">Score: 0</p>
+      </div>
+
+      <p id="promptText" class="prompt"></p>
+
+      <div id="optionsGrid" class="options-grid" aria-live="polite"></div>
+
+      <div id="feedbackBox" class="feedback" role="status" aria-live="polite"></div>
+
+      <div class="controls">
+        <button id="nextRoundBtn" class="btn" disabled>Next Round</button>
+        <button id="restartBtn" class="btn btn--ghost hidden">Play Again</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Simple verification checklist</h2>
+      <div class="info-grid">
+        <article class="info-card">
+          <h3>Source</h3>
+          <p>Check if the account or outlet has a credible history and transparent ownership.</p>
+        </article>
+        <article class="info-card">
+          <h3>Context</h3>
+          <p>Reverse-search the image/video and confirm where it first appeared.</p>
+        </article>
+        <article class="info-card">
+          <h3>Corroboration</h3>
+          <p>Look for at least two independent, trusted sources before sharing.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
