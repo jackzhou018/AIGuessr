@@ -1,19 +1,20 @@
 :root {
-  --paper: #f1eadc;
-  --paper-deep: #e3d7c2;
-  --panel: #fffaf0;
-  --ink: #171813;
-  --muted: #676356;
-  --line: #292820;
-  --line-soft: rgba(41, 40, 32, 0.18);
-  --green: #2e614d;
-  --green-dark: #173d30;
-  --rust: #9f3d2d;
-  --blue: #253f68;
-  --gold: #c08a2f;
-  --danger: #a33b31;
-  --success: #2e614d;
-  --shadow-hard: 8px 8px 0 rgba(23, 24, 19, 0.9);
+  --paper: #f3f0e8;
+  --paper-deep: #e7e1d4;
+  --panel: #fffefa;
+  --ink: #11110f;
+  --muted: #676057;
+  --line: #1d1c19;
+  --line-soft: rgba(29, 28, 25, 0.14);
+  --green: #2f6d52;
+  --green-dark: #23503e;
+  --rust: #c35a43;
+  --blue: #1f5e8c;
+  --gold: #d7aa50;
+  --danger: #b13d35;
+  --success: #2e6650;
+  --shadow-soft: 0 28px 70px rgba(29, 28, 25, 0.13);
+  --shadow-card: 0 14px 32px rgba(29, 28, 25, 0.13);
 }
 
 * {
@@ -27,23 +28,21 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    linear-gradient(90deg, rgba(23, 24, 19, 0.05) 1px, transparent 1px),
-    linear-gradient(rgba(23, 24, 19, 0.04) 1px, transparent 1px),
-    var(--paper);
-  background-size: 22px 22px;
+  background: var(--paper);
   color: var(--ink);
-  font-family: "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Avenir Next", Avenir, "Trebuchet MS", sans-serif;
   line-height: 1.45;
 }
 
 body::before {
   position: fixed;
-  inset: 0;
+  inset: auto 0 0;
   z-index: -1;
+  height: 34vh;
   background:
-    linear-gradient(90deg, rgba(159, 61, 45, 0.09), transparent 32%),
-    linear-gradient(180deg, rgba(37, 63, 104, 0.08), transparent 38%);
+    linear-gradient(90deg, rgba(17, 17, 15, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(17, 17, 15, 0.03) 1px, transparent 1px);
+  background-size: 26px 26px;
   content: "";
   pointer-events: none;
 }
@@ -60,88 +59,69 @@ p {
 }
 
 .app-header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(250px, 0.38fr);
-  gap: clamp(1rem, 4vw, 3rem);
-  align-items: end;
-  max-width: 1220px;
-  margin: 0 auto;
-  padding: clamp(1.5rem, 4vw, 3.25rem) 1.25rem 1.2rem;
-  border-bottom: 2px solid var(--line);
+  max-width: none;
+  margin: 0;
+  padding: clamp(1.6rem, 3vw, 2.6rem) 1.25rem clamp(2.1rem, 5vw, 4rem);
+  background: var(--ink);
+  color: #faf7ef;
 }
 
 .app-header > div {
+  max-width: 1220px;
+  margin: 0 auto;
   min-width: 0;
 }
 
 .eyebrow {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.45rem;
   color: var(--rust);
   font-family: "Courier New", ui-monospace, monospace;
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 h1 {
-  max-width: 760px;
+  max-width: 980px;
   margin-bottom: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.45rem, 7.8vw, 6.8rem);
-  font-weight: 700;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(2.45rem, 7vw, 6.7rem);
+  font-weight: 650;
   letter-spacing: 0;
   line-height: 0.9;
 }
 
 h2 {
   margin-bottom: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.5rem, 2.8vw, 2.35rem);
-  line-height: 1;
-}
-
-h3 {
-  margin-bottom: 0.45rem;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.header-copy {
-  margin: 0;
-  max-width: 31rem;
-  padding: 0.85rem 0 0.1rem;
-  border-top: 2px solid var(--line);
-  color: var(--muted);
-  font-size: 1rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(1.35rem, 2.3vw, 2rem);
   font-weight: 650;
+  line-height: 1.04;
 }
 
 main {
   max-width: 1220px;
   margin: 0 auto;
-  padding: 1.25rem 1.25rem 3.5rem;
+  padding: clamp(1rem, 3vw, 1.8rem) 1.25rem 3.5rem;
 }
 
 .quiz-shell {
   position: relative;
-  background: rgba(255, 250, 240, 0.96);
-  border: 2px solid var(--line);
-  border-radius: 4px;
-  box-shadow: var(--shadow-hard);
-  padding: clamp(0.9rem, 2.6vw, 1.4rem);
+  background: var(--panel);
+  border: 1px solid rgba(29, 28, 25, 0.2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+  padding: clamp(0.9rem, 2.6vw, 1.45rem);
 }
 
 .quiz-shell::before {
   position: absolute;
-  top: -2px;
-  right: 1.2rem;
-  width: clamp(4rem, 13vw, 9rem);
-  height: 0.7rem;
-  background: var(--gold);
-  border: 2px solid var(--line);
-  border-top: 0;
+  top: 0;
+  right: clamp(1rem, 3vw, 1.7rem);
+  width: clamp(5rem, 14vw, 9rem);
+  height: 5px;
+  background: linear-gradient(90deg, var(--rust), var(--gold));
   content: "";
 }
 
@@ -150,17 +130,19 @@ main {
   grid-template-columns: minmax(0, 1fr) minmax(240px, 0.36fr);
   gap: 1rem;
   align-items: end;
-  padding: 0 0 1rem;
-  border-bottom: 2px solid var(--line);
+  padding: 0 0 1.05rem;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .game-meta {
   margin: 0;
   color: var(--muted);
   font-family: "Courier New", ui-monospace, monospace;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
+  letter-spacing: 0.04em;
   text-align: right;
+  text-transform: uppercase;
 }
 
 .game-status {
@@ -172,9 +154,10 @@ main {
 
 .game-status p {
   margin-bottom: 0;
-  padding: 0.55rem 0.7rem;
-  border: 1px solid var(--line);
-  background: var(--paper-deep);
+  padding: 0.62rem 0.75rem;
+  border: 1px solid rgba(29, 28, 25, 0.18);
+  border-radius: 6px;
+  background: #f4f1e9;
   color: var(--ink);
   font-family: "Courier New", ui-monospace, monospace;
   font-size: 0.84rem;
@@ -189,31 +172,34 @@ main {
   margin-bottom: 1rem;
   max-width: 52rem;
   color: var(--ink);
-  font-size: clamp(1rem, 2vw, 1.18rem);
+  font-size: clamp(1.05rem, 1.6vw, 1.18rem);
   font-weight: 800;
 }
 
 .options-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: clamp(0.85rem, 2vw, 1.15rem);
 }
 
 .option-card {
   position: relative;
   min-width: 0;
-  border: 2px solid var(--line);
-  border-radius: 4px;
+  border: 1px solid rgba(29, 28, 25, 0.18);
+  border-radius: 8px;
   background: var(--panel);
+  box-shadow: 0 1px 0 rgba(29, 28, 25, 0.05);
   overflow: hidden;
   transition:
     transform 160ms ease,
-    box-shadow 160ms ease;
+    box-shadow 160ms ease,
+    border-color 160ms ease;
 }
 
 .option-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 rgba(23, 24, 19, 0.82);
+  border-color: rgba(29, 28, 25, 0.45);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
 }
 
 .option-card.locked:hover {
@@ -233,8 +219,8 @@ main {
 }
 
 .image-choice:focus-visible {
-  outline: 3px solid var(--blue);
-  outline-offset: -5px;
+  outline: 2px solid var(--blue);
+  outline-offset: -4px;
 }
 
 .image-choice:disabled {
@@ -245,20 +231,12 @@ main {
   position: relative;
   display: block;
   aspect-ratio: 4 / 3;
-  background: #d2c7b5;
+  background: #d8d1c3;
   overflow: hidden;
 }
 
 .media-wrap::before {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.09) 50%, rgba(0, 0, 0, 0.04) 50%);
-  background-size: 100% 4px;
-  content: "";
-  mix-blend-mode: soft-light;
-  pointer-events: none;
+  display: none;
 }
 
 .media-wrap img {
@@ -266,6 +244,12 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: filter 160ms ease, transform 220ms ease;
+}
+
+.option-card:hover .media-wrap img {
+  filter: saturate(1.02) contrast(1.02);
+  transform: scale(1.01);
 }
 
 .media-wrap.is-missing::after {
@@ -289,14 +273,16 @@ main {
   gap: 1rem;
   align-items: center;
   min-height: 62px;
-  padding: 0.8rem 0.9rem;
-  border-top: 2px solid var(--line);
+  padding: 0.82rem 0.95rem;
+  border-top: 1px solid var(--line-soft);
+  background: #11110f;
+  color: #faf7ef;
 }
 
 .option-label {
   min-width: max-content;
-  color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
+  color: inherit;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   font-size: 1.2rem;
   font-weight: 700;
 }
@@ -313,33 +299,33 @@ main {
 }
 
 .locked .option-reveal {
-  color: var(--muted);
+  color: rgba(250, 247, 239, 0.72);
 }
 
 .option-card.correct {
   border-color: var(--green-dark);
-  box-shadow: inset 0 0 0 4px rgba(46, 97, 77, 0.16);
+  box-shadow: inset 0 0 0 3px rgba(47, 109, 82, 0.22);
 }
 
 .option-card.correct .option-reveal {
-  color: var(--green-dark);
+  color: #93d5b3;
 }
 
 .option-card.wrong {
   border-color: var(--danger);
-  box-shadow: inset 0 0 0 4px rgba(163, 59, 49, 0.14);
+  box-shadow: inset 0 0 0 3px rgba(177, 61, 53, 0.2);
 }
 
 .option-card.wrong .option-reveal {
-  color: var(--danger);
+  color: #f0a39d;
 }
 
 .source-panel {
   display: grid;
   gap: 0.35rem;
   padding: 0.75rem 0.9rem 0.9rem;
-  border-top: 1px solid var(--line);
-  background: #f5eddf;
+  border-top: 1px solid var(--line-soft);
+  background: #f8f2e7;
 }
 
 .source-panel[hidden] {
@@ -385,8 +371,8 @@ main {
 .feedback {
   min-height: 58px;
   margin-top: 1rem;
-  border: 2px solid var(--line);
-  border-radius: 4px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
   padding: 0.85rem 1rem;
   background: #f7efe2;
   color: var(--muted);
@@ -426,9 +412,9 @@ main {
 
 .btn {
   min-height: 44px;
-  border: 2px solid var(--line);
-  border-radius: 4px;
-  padding: 0.65rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.68rem 1.05rem;
   background: var(--ink);
   color: #fff9ed;
   cursor: pointer;
@@ -441,8 +427,8 @@ main {
 
 .btn:hover:enabled {
   background: var(--blue);
-  box-shadow: 3px 3px 0 var(--line);
-  transform: translate(-1px, -1px);
+  box-shadow: 0 8px 18px rgba(29, 28, 25, 0.18);
+  transform: translateY(-1px);
 }
 
 .btn:active:enabled {
@@ -460,6 +446,10 @@ main {
   color: var(--ink);
 }
 
+.btn--ghost:hover:enabled {
+  color: #faf7ef;
+}
+
 .hidden {
   display: none;
 }
@@ -471,15 +461,15 @@ main {
   gap: 1rem;
   width: 100%;
   padding: 1rem;
-  border: 2px solid var(--line);
-  border-radius: 4px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
   background: var(--panel);
 }
 
 .results-score {
   margin-bottom: 0.2rem;
   color: var(--rust);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 700;
   line-height: 0.95;
@@ -521,35 +511,10 @@ main {
   color: var(--danger);
 }
 
-.checklist {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.28fr) minmax(0, 1fr);
-  gap: 1rem;
-  padding: 2rem 0 0;
-}
-
-.tip-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.tip-grid article {
-  padding: 0.9rem 0 0;
-  border-top: 2px solid var(--line);
-}
-
-.tip-grid p {
-  margin-bottom: 0;
-  color: var(--muted);
-}
-
 @media (max-width: 800px) {
   .app-header,
   .game-header,
-  .results-panel,
-  .checklist,
-  .tip-grid {
+  .results-panel {
     grid-template-columns: 1fr;
   }
 
@@ -562,7 +527,7 @@ main {
   }
 
   .quiz-shell {
-    box-shadow: 5px 5px 0 rgba(23, 24, 19, 0.9);
+    box-shadow: 0 12px 28px rgba(29, 28, 25, 0.12);
   }
 }
 

@@ -3,19 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Guessr | Image Verification Desk</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <title>AIGuessr</title>
+  <link rel="stylesheet" href="styles.css?v=20260501">
+  <script src="script.js?v=20260501" defer></script>
 </head>
 <body>
   <header class="app-header">
     <div>
-      <p class="eyebrow">AI Guessr / Image Desk</p>
-      <h1>Pick the rendered frame.</h1>
+      <p class="eyebrow">AIGuessr</p>
+      <h1>Guess the AI-generated image</h1>
     </div>
-    <p class="header-copy">
-      Fifteen side-by-side rounds. Choose first, then review the source and the visual tell.
-    </p>
   </header>
 
   <main>
@@ -23,7 +20,7 @@
       <div class="game-header">
         <div>
           <p class="eyebrow">Real vs AI</p>
-          <h2>Verification Round</h2>
+          <h2>Image Test</h2>
         </div>
         <p id="mediaStats" class="game-meta"></p>
       </div>
@@ -42,24 +39,6 @@
       <div class="controls">
         <button id="nextRoundBtn" class="btn" disabled>Next Round</button>
         <button id="restartBtn" class="btn btn--ghost hidden">Play Again</button>
-      </div>
-    </section>
-
-    <section class="checklist" aria-label="Image verification tips">
-      <h2>Reading the Frame</h2>
-      <div class="tip-grid">
-        <article>
-          <h3>Small Details</h3>
-          <p>Scan hands, signs, wires, logos, and background objects for distorted or repeated shapes.</p>
-        </article>
-        <article>
-          <h3>Light and Physics</h3>
-          <p>Compare shadows, reflections, rain, smoke, and motion cues against the rest of the scene.</p>
-        </article>
-        <article>
-          <h3>Context</h3>
-          <p>Ask whether the image has the messy, specific context a real camera usually captures.</p>
-        </article>
       </div>
     </section>
   </main>
