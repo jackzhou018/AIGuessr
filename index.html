@@ -3,51 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Truth Lens | AI Misinformation Awareness</title>
+  <title>AI Guessr | Image Verification Desk</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <header class="hero">
-    <div class="hero__content">
-      <p class="eyebrow">Digital Media Literacy</p>
-      <h1>Spot the Fake. Stop the Spread.</h1>
-      <p class="hero__lead">
-        Truth Lens is a starter awareness site about AI misinformation. Learn the warning signs,
-        test your instincts, and think twice before sharing suspicious content.
-      </p>
-      <a href="#game" class="btn btn--primary">Play the Guessing Game</a>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">AI Guessr / Image Desk</p>
+      <h1>Pick the rendered frame.</h1>
     </div>
+    <p class="header-copy">
+      Fifteen side-by-side rounds. Choose first, then review the source and the visual tell.
+    </p>
   </header>
 
   <main>
-    <section class="section">
-      <h2>Why this matters</h2>
-      <div class="info-grid">
-        <article class="info-card">
-          <h3>AI media is getting convincing</h3>
-          <p>Fabricated images and videos can imitate real events and people in seconds.</p>
-        </article>
-        <article class="info-card">
-          <h3>False content spreads fast</h3>
-          <p>Emotional and shocking posts travel quickly, especially when facts are not checked.</p>
-        </article>
-        <article class="info-card">
-          <h3>Verification is a skill</h3>
-          <p>Cross-checking sources, dates, and media context helps reduce harm from misinformation.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section section--game" id="game">
+    <section class="quiz-shell" id="game">
       <div class="game-header">
-        <h2>Game: Which one is AI-generated?</h2>
-        <p>Pick the option you think is AI-generated. Image rounds use Artlist AI renders paired against matching real-world photos.</p>
+        <div>
+          <p class="eyebrow">Real vs AI</p>
+          <h2>Verification Round</h2>
+        </div>
         <p id="mediaStats" class="game-meta"></p>
       </div>
 
       <div class="game-status">
-        <p id="roundIndicator">Round 1 of 12</p>
+        <p id="roundIndicator">Round 1 of 15</p>
         <p id="scoreIndicator">Score: 0</p>
       </div>
 
@@ -63,20 +45,20 @@
       </div>
     </section>
 
-    <section class="section">
-      <h2>Simple verification checklist</h2>
-      <div class="info-grid">
-        <article class="info-card">
-          <h3>Source</h3>
-          <p>Check if the account or outlet has a credible history and transparent ownership.</p>
+    <section class="checklist" aria-label="Image verification tips">
+      <h2>Reading the Frame</h2>
+      <div class="tip-grid">
+        <article>
+          <h3>Small Details</h3>
+          <p>Scan hands, signs, wires, logos, and background objects for distorted or repeated shapes.</p>
         </article>
-        <article class="info-card">
+        <article>
+          <h3>Light and Physics</h3>
+          <p>Compare shadows, reflections, rain, smoke, and motion cues against the rest of the scene.</p>
+        </article>
+        <article>
           <h3>Context</h3>
-          <p>Reverse-search the image/video and confirm where it first appeared.</p>
-        </article>
-        <article class="info-card">
-          <h3>Corroboration</h3>
-          <p>Look for at least two independent, trusted sources before sharing.</p>
+          <p>Ask whether the image has the messy, specific context a real camera usually captures.</p>
         </article>
       </div>
     </section>

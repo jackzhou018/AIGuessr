@@ -1,126 +1,236 @@
-const GAME_SETTINGS = {
-  totalRounds: 12,
-  imageRoundTarget: 8,
-  videoRoundTarget: 4
-};
+const DATASET_BASE = "datasets/real-vs-ai-15";
 
-function localArtlistImage(filename, fallbackSrc) {
-  return {
-    src: `assets/artlist-ai/${filename}`,
-    fallbackSrc
-  };
-}
-
-// Add exported Artlist images to assets/artlist-ai using these filenames.
-const artlistImagePairs = [
+const realSources = [
   {
-    scene: "Flooded downtown avenue after heavy rain",
-    ai: localArtlistImage("flooded-downtown.jpg", "assets/ai-city.svg"),
-    real: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Red_Dragon_scuplture_during_River_Lee_flooding%2C_October_2023.jpg/1280px-Red_Dragon_scuplture_during_River_Lee_flooding%2C_October_2023.jpg"
-    }
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3ARed_Dragon_scuplture_during_River_Lee_flooding%2C_October_2023.jpg",
+    author: "Podstawko",
+    license: "CC BY-SA 4.0",
+    title: "Red Dragon sculpture during River Lee flooding"
   },
   {
-    scene: "Press briefing with microphones and speakers",
-    ai: localArtlistImage("press-briefing.jpg", "assets/ai-city.svg"),
-    real: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Edi_Rama%2C_press_conference%2C_ITB_2025%2C_Berlin_%28ITB56439%29.jpg/1280px-Edi_Rama%2C_press_conference%2C_ITB_2025%2C_Berlin_%28ITB56439%29.jpg"
-    }
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3AEdi_Rama%2C_press_conference%2C_ITB_2025%2C_Berlin_(ITB56439).jpg",
+    author: "Matti Blume",
+    license: "CC BY-SA",
+    title: "Edi Rama press conference, ITB 2025"
   },
   {
-    scene: "Night traffic in the rain",
-    ai: localArtlistImage("night-rain-traffic.jpg", "assets/ai-city.svg"),
-    real: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Delhi%2C_India%2C_Rain_at_night.jpg/1280px-Delhi%2C_India%2C_Rain_at_night.jpg"
-    }
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3ADelhi%2C_India%2C_Rain_at_night.jpg",
+    author: "Vyacheslav Argenberg",
+    license: "CC BY 4.0",
+    title: "Delhi, India, rain at night"
   },
   {
-    scene: "Crowded transit platform",
-    ai: localArtlistImage("crowded-platform.jpg", "assets/ai-city.svg"),
-    real: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Crowded_Train_Platform_During_9-Euro_Ticket_Period_in_Germany.jpg/1280px-Crowded_Train_Platform_During_9-Euro_Ticket_Period_in_Germany.jpg"
-    }
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3ACrowded_Train_Platform_During_9-Euro_Ticket_Period_in_Germany.jpg",
+    author: "Spinarak",
+    license: "CC0",
+    title: "Crowded train platform during 9-Euro Ticket period"
   },
   {
-    scene: "Smoke over a residential neighborhood",
-    ai: localArtlistImage("smoke-neighborhood.jpg", "assets/ai-forest.svg"),
-    real: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/0/02/Smoke_in_Minneapolis.jpg"
-    }
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3ASmoke_in_Minneapolis.jpg",
+    author: "Wikimedia Commons contributor",
+    license: "CC BY-SA 4.0",
+    title: "Smoke in Minneapolis"
   },
   {
-    scene: "Storm damage cleanup crew at work",
-    ai: localArtlistImage("storm-cleanup.jpg", "assets/ai-city.svg"),
-    real: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Cleanup_efforts_after_storm_Xavier._Spielvogel_3.jpg/1280px-Cleanup_efforts_after_storm_Xavier._Spielvogel_3.jpg"
-    }
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3ACleanup_efforts_after_storm_Xavier._Spielvogel_3.jpg",
+    author: "Spielvogel",
+    license: "CC BY-SA 4.0",
+    title: "Cleanup efforts after storm Xavier"
   },
   {
-    scene: "Reporter filming outdoors in bad weather",
-    ai: localArtlistImage("reporter-weather.jpg", "assets/ai-forest.svg"),
-    real: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/N24-Reporter_mit_Kameramann_-_K%C3%B6ln_%287344%29.JPG/1280px-N24-Reporter_mit_Kameramann_-_K%C3%B6ln_%287344%29.JPG"
-    }
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3AN24-Reporter_mit_Kameramann_-_K%C3%B6ln_(7344).JPG",
+    author: "Raimond Spekking",
+    license: "CC BY-SA 4.0",
+    title: "N24 reporter with camera operator in Cologne"
   },
   {
-    scene: "Public market square with a large crowd",
-    ai: localArtlistImage("market-square.jpg", "assets/ai-city.svg"),
-    real: {
-      src: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Ferryhill_Market_Square_1945_-_geograph.org.uk_-_88616.jpg"
-    }
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3AFerryhill_Market_Square_1945_-_geograph.org.uk_-_88616.jpg",
+    author: "Colin Coates",
+    license: "CC BY-SA 2.0",
+    title: "Ferryhill Market Square"
+  },
+  {
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3AConstruction_Workers.jpg",
+    author: "Paul Keheler",
+    license: "CC BY 2.0",
+    title: "Construction Workers"
+  },
+  {
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3AStreet_Food.jpg",
+    author: "J. Miers",
+    license: "CC BY-SA 4.0",
+    title: "Street Food"
+  },
+  {
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3ABeijing_Street_Food_Market_(9870620283).jpg",
+    author: "Gary Todd",
+    license: "CC0",
+    title: "Beijing Street Food Market"
+  },
+  {
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3ARainy_street.jpg",
+    author: "Eman abdelkader",
+    license: "CC BY-SA 4.0",
+    title: "Rainy street"
+  },
+  {
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3ARestaurant_Kitchen.jpg",
+    author: "Visitor7",
+    license: "CC BY-SA 3.0",
+    title: "Restaurant Kitchen"
+  },
+  {
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3AStudents_in_classroom.jpg",
+    author: "Esthee2010",
+    license: "CC BY-SA 4.0",
+    title: "Students in classroom"
+  },
+  {
+    commonsPage: "https://commons.wikimedia.org/wiki/File%3AFirefighters.jpg",
+    author: "Junior Libby",
+    license: "CC0",
+    title: "Firefighters"
   }
 ];
 
-const mediaDatabase = {
-  image: {
-    pairs: artlistImagePairs
+const aiSource = {
+  provider: "ChatGPT",
+  detail: "Generated with ChatGPT for this quiz."
+};
+
+const quizPairs = [
+  {
+    id: "flooded",
+    scene: "Flooded downtown avenue after heavy rain",
+    realSrc: `${DATASET_BASE}/real/real_01_flooded-downtown.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_one_flooded.png`,
+    aiCue:
+      "The park scene is too clean for a flood match: the path, grass, bench, and pond edges look orderly instead of disrupted by high water."
   },
-  video: {
-    real: [
-      { src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", scene: "Macro-style flower footage" },
-      { src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4", scene: "Natural outdoor motion" },
-      { src: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4", scene: "Short camera movement clip" },
-      { src: "https://samplelib.com/lib/preview/mp4/sample-10s.mp4", scene: "Scene with natural motion blur" },
-      { src: "https://filesamples.com/samples/video/mp4/sample_640x360.mp4", scene: "Standard live-action framing" },
-      { src: "https://filesamples.com/samples/video/mp4/sample_1280x720.mp4", scene: "Longer documentary-style framing" }
-    ],
-    ai: [
-      { src: "https://filesamples.com/samples/video/mp4/sample_960x400_ocean_with_audio.mp4", scene: "Synthetic-style motion test clip" },
-      { src: "https://filesamples.com/samples/video/mp4/sample_1280x720_surfing_with_audio.mp4", scene: "Simulated deepfake benchmark clip" },
-      { src: "https://filesamples.com/samples/video/mp4/sample_960x540.mp4", scene: "Rendered sequence benchmark clip" },
-      { src: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4", scene: "Synthetic motion consistency sample" },
-      { src: "https://samplelib.com/lib/preview/mp4/sample-10s.mp4", scene: "Facial consistency stress-test sample" },
-      { src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4", scene: "Compression and cadence check sample" }
-    ]
+  {
+    id: "press",
+    scene: "Press briefing with microphones and speakers",
+    realSrc: `${DATASET_BASE}/real/real_02_press-briefing.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_two_press.png`,
+    aiCue:
+      "The White House text and logos are almost right but soften at the edges, and the crowd's hands and heads repeat in staged-looking poses."
+  },
+  {
+    id: "night-traffic",
+    scene: "Night traffic in the rain",
+    realSrc: `${DATASET_BASE}/real/real_03_night-rain-traffic.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_three_night.png`,
+    aiCue:
+      "The wet-road reflections are brighter and more mirror-like than the lights causing them, while distant cars smear together."
+  },
+  {
+    id: "metro-platform",
+    scene: "Crowded transit platform",
+    realSrc: `${DATASET_BASE}/real/real_04_crowded-platform.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_four_metro.png`,
+    aiCue:
+      "The crowd compresses around dense areas, with people slightly merging and faces losing definition near the train doors."
+  },
+  {
+    id: "smoke-neighborhood",
+    scene: "Smoke over a residential neighborhood",
+    realSrc: `${DATASET_BASE}/real/real_05_smoke-neighborhood.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_five_smoke.png`,
+    aiCue:
+      "The smoke has a painterly, even texture and blends into the background without the chaotic lighting behavior of real smoke."
+  },
+  {
+    id: "storm-cleanup",
+    scene: "Storm damage cleanup crew at work",
+    realSrc: `${DATASET_BASE}/real/real_06_storm-cleanup.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_six_storm.png`,
+    aiCue:
+      "The debris feels randomly scattered instead of pushed by one clear force, so the damage lacks consistent direction."
+  },
+  {
+    id: "reporter",
+    scene: "Reporter filming outdoors in bad weather",
+    realSrc: `${DATASET_BASE}/real/real_07_reporter-weather.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_seven_reporter.png`,
+    aiCue:
+      "The skin looks over-smoothed, and small clothing details such as logos or text become warped rather than readable."
+  },
+  {
+    id: "market-square",
+    scene: "Public market square with a large crowd",
+    realSrc: `${DATASET_BASE}/real/real_08_market-square.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_eight_market.png`,
+    aiCue:
+      "The historical market looks plausible at a glance, but building text and crowd detail turn muddy and repetitive when inspected closely."
+  },
+  {
+    id: "construction",
+    scene: "Construction workers on a steel frame",
+    realSrc: `${DATASET_BASE}/real/real_09_construction-workers.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_nine_construction.png`,
+    aiCue:
+      "Tools and machinery show small structural inconsistencies, and worker poses do not fully line up with realistic equipment use."
+  },
+  {
+    id: "street-food",
+    scene: "Street food being prepared in Old Delhi",
+    realSrc: `${DATASET_BASE}/real/real_10_street-food.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_ten_street_food.png`,
+    aiCue:
+      "The steam looks stylized and uniform, and the food is arranged a little too perfectly and evenly."
+  },
+  {
+    id: "beijing-food-street",
+    scene: "Busy Beijing street food market",
+    realSrc: `${DATASET_BASE}/real/real_11_beijing-food-market.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_eleven_Beijing.png`,
+    aiCue:
+      "Signs look almost readable but collapse into incorrect characters, with small cultural details that do not quite fit."
+  },
+  {
+    id: "rainy-street",
+    scene: "Rainy street viewed through wet glass",
+    realSrc: `${DATASET_BASE}/real/real_12_rainy-street.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_twelve_rainy.png`,
+    aiCue:
+      "The reflections are too vivid and evenly distributed, and umbrellas or pedestrians show slight shape distortions."
+  },
+  {
+    id: "kitchen",
+    scene: "Commercial restaurant kitchen",
+    realSrc: `${DATASET_BASE}/real/real_13_restaurant-kitchen.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_thirteen_kitchen.png`,
+    aiCue:
+      "The cooking action feels frozen, with warped utensils and heat or flame behavior that does not follow the scene."
+  },
+  {
+    id: "classroom",
+    scene: "Students studying in a classroom",
+    realSrc: `${DATASET_BASE}/real/real_14_students-classroom.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_fourteen_classroom.png`,
+    aiCue:
+      "Students' faces look similar or under-detailed, and the board writing appears structured but becomes inconsistent up close."
+  },
+  {
+    id: "firefighters",
+    scene: "Firefighters working outdoors",
+    realSrc: `${DATASET_BASE}/real/real_15_firefighters.jpg`,
+    aiSrc: `${DATASET_BASE}/AI/AI_fifteen_firefighters.png`,
+    aiCue:
+      "The fire is overly dramatic and uniform, while hoses, gear, smoke, and people interact with subtle physical inconsistencies."
   }
-};
+].map((pair, index) => ({
+  ...pair,
+  realSource: realSources[index],
+  aiSource
+}));
 
-const promptBank = {
-  image: [
-    "One image in this pair is AI-generated. Which one is it?",
-    "Which still frame looks synthetic rather than camera-captured?",
-    "Compare texture, lighting, and depth. Which image is AI-generated?",
-    "Which image is likely model-generated instead of photographed?"
-  ],
-  video: [
-    "One clip is labeled as synthetic in this benchmark pair. Which one is it?",
-    "Which video likely comes from a generated or simulated source?",
-    "Which clip shows the stronger deepfake-style cues in motion?"
-  ]
-};
-
-const explanationBank = {
-  image: [
-    "Look for inconsistent shadows, unnatural edges, or repeated textures in the details.",
-    "AI renders often struggle with tiny structures like fingers, text, wires, and reflections.",
-    "Photorealistic generation can look convincing, so check geometry and context consistency."
-  ],
-  video: [
-    "For moving content, check object continuity and whether motion and lighting stay coherent across frames.",
-    "Video clues usually show up in cadence, edge shimmer, and inconsistent scene physics.",
-    "This demo uses simulated benchmark clips for video rounds, so use it as a cue-training exercise."
-  ]
-};
+const promptBank = [
+  "One image was generated by AI. Which one is it?",
+  "Compare both images closely. Which image is synthetic?",
+  "Look at texture, lighting, faces, hands, and background detail. Which one is AI-generated?",
+  "Which image looks model-generated rather than camera-captured?"
+];
 
 const roundIndicator = document.getElementById("roundIndicator");
 const scoreIndicator = document.getElementById("scoreIndicator");
@@ -136,6 +246,9 @@ let currentRoundIndex = 0;
 let score = 0;
 let answered = false;
 let currentOptions = [];
+let answerHistory = [];
+
+const imagePreloadCache = new Map();
 
 function shuffle(array) {
   const copy = [...array];
@@ -146,116 +259,126 @@ function shuffle(array) {
   return copy;
 }
 
-function pickRandomItems(items, count) {
-  return shuffle(items).slice(0, Math.min(count, items.length));
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
-function createRound(type, realMedia, aiMedia, roundIndex) {
-  return {
-    prompt: promptBank[type][roundIndex % promptBank[type].length],
-    options: [
-      { ...realMedia, type },
-      { ...aiMedia, type, isAI: true }
-    ],
-    explanation: explanationBank[type][roundIndex % explanationBank[type].length]
-  };
+function preloadSrc(src) {
+  if (imagePreloadCache.has(src)) return;
+
+  const image = new Image();
+  image.decoding = "async";
+  image.src = src;
+  imagePreloadCache.set(src, image);
+}
+
+function preloadRoundImages(round) {
+  if (!round) return;
+  preloadSrc(round.realSrc);
+  preloadSrc(round.aiSrc);
 }
 
 function buildRounds() {
-  const imageRounds = Math.min(
-    GAME_SETTINGS.imageRoundTarget,
-    mediaDatabase.image.pairs.length
-  );
-  const videoRounds = Math.min(
-    GAME_SETTINGS.videoRoundTarget,
-    mediaDatabase.video.real.length,
-    mediaDatabase.video.ai.length
-  );
-
-  const selectedImagePairs = pickRandomItems(mediaDatabase.image.pairs, imageRounds);
-  const selectedRealVideos = pickRandomItems(mediaDatabase.video.real, videoRounds);
-  const selectedAiVideos = pickRandomItems(mediaDatabase.video.ai, videoRounds);
-
-  const generatedRounds = [];
-
-  for (let i = 0; i < imageRounds; i += 1) {
-    const pair = selectedImagePairs[i];
-    generatedRounds.push(
-      createRound(
-        "image",
-        { ...pair.real, scene: pair.scene },
-        { ...pair.ai, scene: pair.scene },
-        i
-      )
-    );
-  }
-
-  for (let i = 0; i < videoRounds; i += 1) {
-    generatedRounds.push(createRound("video", selectedRealVideos[i], selectedAiVideos[i], i));
-  }
-
-  return shuffle(generatedRounds).slice(0, GAME_SETTINGS.totalRounds);
+  return shuffle(quizPairs).map((pair, index) => ({
+    ...pair,
+    prompt: promptBank[index % promptBank.length],
+    roundNumber: index + 1
+  }));
 }
 
-function mediaElement(option) {
-  if (option.type === "video") {
-    return `
-      <video controls muted playsinline preload="metadata">
-        <source src="${option.src}">
-        Your browser does not support this video tag.
-      </video>
-    `;
-  }
-
-  const fallbackAttr = option.fallbackSrc ? ` data-fallback-src="${option.fallbackSrc}"` : "";
-  return `<img src="${option.src}" alt="${option.scene}" loading="lazy"${fallbackAttr}>`;
+function createOptions(round) {
+  return shuffle([
+    {
+      label: "Image A",
+      src: round.realSrc,
+      scene: round.scene,
+      kind: "Real photograph",
+      isAI: false,
+      source: {
+        provider: "Wikimedia Commons",
+        url: round.realSource.commonsPage,
+        detail: `${round.realSource.author}, ${round.realSource.license}. ${round.realSource.title}.`
+      }
+    },
+    {
+      label: "Image B",
+      src: round.aiSrc,
+      scene: round.scene,
+      kind: "AI-generated image",
+      isAI: true,
+      source: round.aiSource
+    }
+  ]).map((option, index) => ({
+    ...option,
+    label: `Image ${String.fromCharCode(65 + index)}`
+  }));
 }
 
-function attachMediaFallbacks() {
-  document.querySelectorAll("img[data-fallback-src]").forEach((img) => {
-    img.addEventListener("error", () => {
-      const fallbackSrc = img.dataset.fallbackSrc;
-      if (!fallbackSrc || img.dataset.fallbackApplied === "true") return;
-      img.dataset.fallbackApplied = "true";
-      img.src = fallbackSrc;
-    });
-  });
+function sourceMarkup(option) {
+  const sourceName = escapeHtml(option.source.provider);
+  const sourceDetail = escapeHtml(option.source.detail);
+  const sourceValue = option.source.url
+    ? `<a href="${escapeHtml(option.source.url)}" target="_blank" rel="noreferrer">${sourceName}</a>`
+    : `<strong>${sourceName}</strong>`;
+
+  return `
+    <p class="source-line"><span>Source</span>${sourceValue}</p>
+    <p class="source-detail">${sourceDetail}</p>
+  `;
 }
 
 function renderRound() {
   const round = rounds[currentRoundIndex];
   answered = false;
-  currentOptions = shuffle(round.options).map((option, index) => ({
-    ...option,
-    label: `Option ${String.fromCharCode(65 + index)}`
-  }));
+  currentOptions = createOptions(round);
+  preloadRoundImages(round);
+  preloadRoundImages(rounds[currentRoundIndex + 1]);
+
   roundIndicator.textContent = `Round ${currentRoundIndex + 1} of ${rounds.length}`;
   scoreIndicator.textContent = `Score: ${score}`;
   promptText.textContent = round.prompt;
   feedbackBox.className = "feedback";
-  feedbackBox.textContent = "Choose one option to lock your guess.";
+  feedbackBox.textContent = "Pick the image you think was generated by AI.";
   nextRoundBtn.disabled = true;
+  nextRoundBtn.textContent = currentRoundIndex === rounds.length - 1 ? "See Score" : "Next Round";
 
   optionsGrid.innerHTML = currentOptions
     .map((option, index) => `
       <article class="option-card" data-index="${index}">
-        <div class="media-wrap">
-          ${mediaElement(option)}
-        </div>
-        <div class="option-meta">
-          <p>${option.label}</p>
-          <p class="option-scene">${option.scene}</p>
-          <button class="btn guess-btn" data-index="${index}">Guess this one</button>
-        </div>
+        <button class="image-choice" data-index="${index}" aria-label="Choose ${option.label} as AI-generated">
+          <span class="media-wrap">
+            <img
+              src="${escapeHtml(option.src)}"
+              alt="${escapeHtml(option.scene)}"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            >
+          </span>
+          <span class="option-meta">
+            <span class="option-label">${option.label}</span>
+            <span class="option-reveal" aria-hidden="true"></span>
+          </span>
+        </button>
+        <div class="source-panel" data-source-panel hidden></div>
       </article>
     `)
     .join("");
 
-  document.querySelectorAll(".guess-btn").forEach((btn) => {
+  document.querySelectorAll(".image-choice").forEach((btn) => {
     btn.addEventListener("click", () => evaluateGuess(Number(btn.dataset.index)));
   });
 
-  attachMediaFallbacks();
+  document.querySelectorAll(".media-wrap img").forEach((image) => {
+    image.addEventListener("error", () => {
+      image.closest(".media-wrap")?.classList.add("is-missing");
+    });
+  });
 }
 
 function evaluateGuess(guessIndex) {
@@ -264,27 +387,93 @@ function evaluateGuess(guessIndex) {
   answered = true;
   const aiIndex = currentOptions.findIndex((option) => option.isAI);
   const isCorrect = guessIndex === aiIndex;
+  const round = rounds[currentRoundIndex];
+
   if (isCorrect) {
     score += 1;
   }
 
+  answerHistory.push({
+    round: currentRoundIndex + 1,
+    scene: round.scene,
+    picked: currentOptions[guessIndex].label,
+    correct: currentOptions[aiIndex].label,
+    isCorrect
+  });
+
   scoreIndicator.textContent = `Score: ${score}`;
-  const round = rounds[currentRoundIndex];
   feedbackBox.className = `feedback ${isCorrect ? "success" : "fail"}`;
-  feedbackBox.textContent = isCorrect
-    ? `Correct. ${round.explanation}`
-    : `Not quite. The AI-generated pick was ${currentOptions[aiIndex].label}. ${round.explanation}`;
+  feedbackBox.innerHTML = `
+    <p class="feedback-result">
+      ${
+        isCorrect
+          ? "Correct."
+          : `Not quite. The AI-generated image was ${escapeHtml(currentOptions[aiIndex].label)}.`
+      }
+    </p>
+    <p><strong>AI clue:</strong> ${escapeHtml(round.aiCue)}</p>
+  `;
 
   document.querySelectorAll(".option-card").forEach((card, index) => {
+    const option = currentOptions[index];
+    const reveal = card.querySelector(".option-reveal");
+    const button = card.querySelector(".image-choice");
+    const sourcePanel = card.querySelector("[data-source-panel]");
+
     card.classList.add("locked");
+    button.disabled = true;
+    reveal.textContent = option.kind;
+    reveal.setAttribute("aria-hidden", "false");
+    sourcePanel.innerHTML = sourceMarkup(option);
+    sourcePanel.hidden = false;
+
     if (index === aiIndex) {
       card.classList.add("correct");
-    } else if (index === guessIndex && !isCorrect) {
+    } else if (index === guessIndex) {
       card.classList.add("wrong");
     }
   });
 
+  preloadRoundImages(rounds[currentRoundIndex + 1]);
   nextRoundBtn.disabled = false;
+}
+
+function scoreMessage(percent) {
+  if (percent >= 90) return "Excellent detection instincts.";
+  if (percent >= 70) return "Strong eye for synthetic details.";
+  if (percent >= 50) return "Solid start. The close calls are where practice helps.";
+  return "Keep practicing. AI images are built to pass a quick glance.";
+}
+
+function renderResults() {
+  const percent = Math.round((score / rounds.length) * 100);
+  roundIndicator.textContent = "Quiz complete";
+  scoreIndicator.textContent = `Final score: ${score}/${rounds.length}`;
+  promptText.textContent = scoreMessage(percent);
+  feedbackBox.className = "feedback success";
+  feedbackBox.textContent = `You scored ${score} out of ${rounds.length} (${percent}%).`;
+
+  optionsGrid.innerHTML = `
+    <section class="results-panel" aria-label="Quiz results">
+      <div>
+        <p class="results-score">${score}/${rounds.length}</p>
+        <p class="results-caption">AI images identified</p>
+      </div>
+      <ol class="results-list">
+        ${answerHistory
+          .map((answer) => `
+            <li class="${answer.isCorrect ? "is-correct" : "is-wrong"}">
+              <span>${answer.round}. ${escapeHtml(answer.scene)}</span>
+              <strong>${answer.isCorrect ? "Correct" : `Missed, AI was ${escapeHtml(answer.correct)}`}</strong>
+            </li>
+          `)
+          .join("")}
+      </ol>
+    </section>
+  `;
+
+  nextRoundBtn.classList.add("hidden");
+  restartBtn.classList.remove("hidden");
 }
 
 function goNextRound() {
@@ -294,32 +483,26 @@ function goNextRound() {
     return;
   }
 
-  promptText.textContent = "Game complete.";
-  optionsGrid.innerHTML = "";
-  nextRoundBtn.classList.add("hidden");
-  restartBtn.classList.remove("hidden");
-  feedbackBox.className = "feedback success";
-  feedbackBox.textContent = `You scored ${score} out of ${rounds.length}. Keep practicing before sharing viral posts.`;
+  renderResults();
 }
 
 function updateMediaStats() {
-  if (!mediaStats) return;
-  const totalImagePairs = mediaDatabase.image.pairs.length;
-  const totalVideos = mediaDatabase.video.real.length + mediaDatabase.video.ai.length;
-  mediaStats.textContent = `Current media database: ${totalImagePairs} Artlist AI/real image pairs and ${totalVideos} video samples.`;
+  mediaStats.textContent = `${quizPairs.length} real/AI image pairs loaded from datasets/real-vs-ai-15.`;
 }
 
 function restartGame() {
   rounds = buildRounds();
   currentRoundIndex = 0;
   score = 0;
+  answerHistory = [];
   nextRoundBtn.classList.remove("hidden");
   restartBtn.classList.add("hidden");
+  updateMediaStats();
+  preloadRoundImages(rounds[0]);
   renderRound();
 }
 
 nextRoundBtn.addEventListener("click", goNextRound);
 restartBtn.addEventListener("click", restartGame);
 
-updateMediaStats();
 restartGame();

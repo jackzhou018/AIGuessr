@@ -1,0 +1,24 @@
+# Ignore everything by default.
+*
+
+# Keep the ignore policy trackable.
+!.gitignore
+
+# Project documentation.
+!README.md
+
+# Main website files.
+!index.html
+!script.js
+!styles.css
+
+# Scripts.
+!scripts/
+!scripts/**
+
+# Datasets.
+!datasets/
+!datasets/**
+
+# Local agent metadata.
+**/.codex
