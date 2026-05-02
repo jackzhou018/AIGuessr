@@ -70,6 +70,7 @@ p {
   max-width: 1220px;
   margin: 0 auto;
   min-width: 0;
+  text-align: center;
 }
 
 .eyebrow {
@@ -83,10 +84,10 @@ p {
 }
 
 h1 {
-  max-width: 980px;
+  max-width: none;
   margin-bottom: 0;
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  font-size: clamp(2.45rem, 7vw, 6.7rem);
+  font-size: clamp(4rem, 13vw, 10rem);
   font-weight: 650;
   letter-spacing: 0;
   line-height: 0.9;
@@ -113,6 +114,46 @@ main {
   border-radius: 8px;
   box-shadow: var(--shadow-soft);
   padding: clamp(0.9rem, 2.6vw, 1.45rem);
+}
+
+.applications-section {
+  margin-top: clamp(1.4rem, 4vw, 2.5rem);
+  padding: clamp(1.1rem, 3vw, 1.65rem);
+  border: 1px solid rgba(29, 28, 25, 0.2);
+  border-radius: 8px;
+  background: #fffaf0;
+  box-shadow: var(--shadow-card);
+}
+
+.applications-section h2 {
+  margin-bottom: 0.85rem;
+  color: var(--ink);
+}
+
+.applications-section p {
+  max-width: 74ch;
+  margin-bottom: 0.9rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.applications-section a {
+  color: var(--blue);
+  font-weight: 900;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.applications-list {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 78ch;
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.applications-list li {
+  color: var(--ink);
 }
 
 .quiz-shell::before {

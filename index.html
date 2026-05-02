@@ -4,20 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AIGuessr</title>
-  <link rel="stylesheet" href="styles.css?v=20260501">
+  <link rel="stylesheet" href="styles.css?v=20260502">
   <script>
     window.va = window.va || function () {
       (window.vaq = window.vaq || []).push(arguments);
     };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
-  <script src="script.js?v=20260501" defer></script>
+  <script src="script.js?v=20260502" defer></script>
 </head>
 <body>
   <header class="app-header">
     <div>
-      <p class="eyebrow">AIGuessr</p>
-      <h1>Guess the AI-generated image</h1>
+      <h1>AIGuessr</h1>
     </div>
   </header>
 
@@ -46,6 +45,19 @@
         <button id="nextRoundBtn" class="btn" disabled>Next Round</button>
         <button id="restartBtn" class="btn btn--ghost hidden">Play Again</button>
       </div>
+    </section>
+
+    <section class="applications-section" id="real-world-applications">
+      <h2>Real-World Applications</h2>
+      <p>Tricky, isn’t it? Even though the quiz is purposely designed to spot out AI features where your alarm bells are on high alert, it can still be quite ambiguous and difficult to differentiate AI-generated images from real images. This website was designed to display the capabilities of modern AI, which will only get better, and promote awareness towards misinformation and fabricated evidence. Although this is a quiz specifically for images, AI-generated misinformation comes in many different media.</p>
+      <p>Here are some practical tips to be aware of, regardless of the medium(many insights from this research article on <a href="https://arxiv.org/abs/2408.00024" target="_blank" rel="noreferrer">Deceptive AI Systems</a>):</p>
+      <ul class="applications-list">
+        <li>Check the reasoning before the claim: the paper explains how AI-generated misinformation built for deception can make claims seem convincing but often lack a logical backbone. For images and videos, look into the details—the text on the chalkboard, the logos, the lighting—for inconsistencies.</li>
+        <li>Look at the background: AI often gets the main facts or figures right, but background evidence/objects are often clearly wrong or distorted.</li>
+        <li>ALWAYS look at the context: Generative AI will often use half-truths to try to mislead.</li>
+        <li>Too perfect: This is especially useful for visual media, where AI will make the lighting too perfect, or shapes too clean and concise.</li>
+        <li>Question!: Always question things you see on the internet and exercise your intuition.</li>
+      </ul>
     </section>
   </main>
 </body>

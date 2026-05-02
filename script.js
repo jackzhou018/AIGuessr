@@ -105,7 +105,7 @@ const quizPairs = [
     realSrc: `${DATASET_BASE}/real/real_01_flooded-downtown.jpg`,
     aiSrc: `${DATASET_BASE}/AI/AI_one_flooded.png`,
     aiCue:
-      "The park scene is too clean for a flood match: the path, grass, bench, and pond edges look orderly instead of disrupted by high water."
+      "The dragon sculpture has overly smooth surfaces, and the surrounding buildings, railings, and walkway details lose definition when inspected closely."
   },
   {
     id: "press",
@@ -153,7 +153,7 @@ const quizPairs = [
     realSrc: `${DATASET_BASE}/real/real_07_reporter-weather.jpg`,
     aiSrc: `${DATASET_BASE}/AI/AI_seven_reporter.png`,
     aiCue:
-      "The skin looks over-smoothed, and small clothing details such as logos or text become warped rather than readable."
+      "The reporter's face and hands look slightly over-smoothed, while the camera, microphone, and clothing details do not hold consistent shapes."
   },
   {
     id: "market-square",
