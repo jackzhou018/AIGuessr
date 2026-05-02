@@ -105,7 +105,7 @@ const quizPairs = [
     realSrc: `${DATASET_BASE}/real/real_01_flooded-downtown.jpg`,
     aiSrc: `${DATASET_BASE}/AI/AI_one_flooded.png`,
     aiCue:
-      "The dragon sculpture has overly smooth surfaces, and the surrounding buildings, railings, and walkway details lose definition when inspected closely."
+      "The park scene looks unusually pristine: the path curves too cleanly, the grass has an even texture, and benches, lamps, and trees feel arranged more like a generated scene than a candid photo."
   },
   {
     id: "press",
@@ -153,7 +153,7 @@ const quizPairs = [
     realSrc: `${DATASET_BASE}/real/real_07_reporter-weather.jpg`,
     aiSrc: `${DATASET_BASE}/AI/AI_seven_reporter.png`,
     aiCue:
-      "The reporter's face and hands look slightly over-smoothed, while the camera, microphone, and clothing details do not hold consistent shapes."
+      "The reporter looks slightly composited into the scene: her face and hand are over-smoothed, the microphone edges are soft, and the jacket logos mix readable text with warped details."
   },
   {
     id: "market-square",
